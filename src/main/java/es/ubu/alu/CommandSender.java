@@ -8,6 +8,11 @@ package es.ubu.alu;
  *
  */
 public interface CommandSender {
+	public static final String COMMAND_LED = "led";
+	public static final String COMMAND_MSG = "msg";
+	public static final String COMMAND_PWM = "pwm";
+	public static final String SEPARATOR = ":";
+	
 	public enum Color {
 	    RED('r'),
 	    GREEN('g'),
