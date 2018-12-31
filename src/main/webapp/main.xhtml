@@ -3,12 +3,19 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
-  <title>A Simple JavaServer Faces 2.0 View</title>
+  <title>K64F Connect</title>
 </h:head>
 <h:body>
   <h:form>
-      First name: #{userBean.firstName} Last name: #{userBean.lastName}
-    <p><h:commandButton value="submit" /></p>
+      IP Address: #{userBean.getIP()} Port: #{userBean.getPort()}
+    <p><h:commandButton value="RED" action="#{userBean.turnOnRed()}"/></p>
+    <p><h:commandButton value="GREEN" action="#{userBean.turnOnGreen()}"/></p>
+    <p><h:commandButton value="BLUE" action="#{userBean.turnOnBlue()}"/></p>
+    <p><h:commandButton value="YELLOW" action="#{userBean.turnOnYellow()}"/></p>
+    <p><h:commandButton value="MAGENTA" action="#{userBean.turnOnMagenta()}"/></p>
+    <p><h:commandButton value="CYAN" action="#{userBean.turnOnCyan()}"/></p>
+    <p><h:commandButton value="WHITE" action="#{userBean.turnOnWhite()}"/></p>
+    <p><h:commandButton value="OFF" action="#{userBean.turnOffLeds()}"/></p>
   </h:form>
 </h:body>
 </html>
