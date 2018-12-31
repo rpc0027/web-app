@@ -1,92 +1,56 @@
 package es.ubu.alu;
 
 import java.io.Serializable;
-import java.util.Date;
+
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
-import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
 
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
-    
-    protected String firstName = "Duke";
-    protected String lastName = "Java";
-    protected Date dob;
-    protected String sex = "Unknown";
-    protected String email;
-    protected String serviceLevel = "medium";
-    
-    public UserBean() {}
+	private static final long serialVersionUID = 1L;
 
-    public String getFirstName() {
-        return firstName;
-    }
+	TCPCommandSender commandSender = new TCPCommandSender("192.168.1.100", 1234);
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public UserBean() {}
 
-    public String getLastName() {
-        return lastName;
-    }
+	public String getIP() {
+		return commandSender.getIPAddress();
+	}
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+	public int getPort() {
+		return commandSender.getPort();
+	}
 
-    public Date getDob() {
-        return dob;
-    }
+	public void turnOnRed() { 
+		commandSender.turnOnLed(CommandSender.Color.RED);
+	}
 
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
+	public void turnOnGreen() { 
+		commandSender.turnOnLed(CommandSender.Color.GREEN);
+	}
 
-    public String getSex() {
-        return sex;
-    }
+	public void turnOnBlue() {
+		commandSender.turnOnLed(CommandSender.Color.BLUE);
+	}
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
+	public void turnOnYellow() { 
+		commandSender.turnOnLed(CommandSender.Color.YELLOW);
+	}
 
-    public String getEmail() {
-        return email;
-    }
+	public void turnOnMagenta() { 
+		commandSender.turnOnLed(CommandSender.Color.MAGENTA);
+	}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public void turnOnCyan() { 
+		commandSender.turnOnLed(CommandSender.Color.CYAN);
+	}
 
-    public String getServiceLevel() {
-        return serviceLevel;
-    }
+	public void turnOnWhite() { 
+		commandSender.turnOnLed(CommandSender.Color.WHITE);
+	}
 
-    public void setServiceLevel(String serviceLevel) {
-        this.serviceLevel = serviceLevel;
-    }
-    
-    public void validateEmail(FacesContext context, UIComponent toValidate,
-            Object value) throws ValidatorException {
-        String emailStr = (String) value;
-        if (-1 == emailStr.indexOf("@")) {
-            FacesMessage message = new FacesMessage("Invalid email address");
-            throw new ValidatorException(message);
-        }
-    }
-
-    public String addConfirmedUser() {
-        // This method would call a database or other service and add the 
-        // confirmed user information.
-        // For now, we just place an informative message in request scope
-        FacesMessage doneMessage = 
-                new FacesMessage("Successfully added new user");
-        FacesContext.getCurrentInstance().addMessage(null, doneMessage);
-        return "done";
-    }
+	public void turnOffLeds() { 
+		commandSender.turnOffLEDs();
+	}
 }
-
