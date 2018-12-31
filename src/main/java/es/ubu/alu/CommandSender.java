@@ -50,6 +50,8 @@ public interface CommandSender {
 	    }
 	}
 	
+	public void sendCommand(String command);
+	
 	public void turnOnLed(Color color);
 	void turnOnRed();
 	void turnOnGreen();
