@@ -20,6 +20,7 @@ public interface CommandSender {
 	    YELLOW('y'),
 	    MAGENTA('m'),
 	    CYAN('c'),
+	    WHITE('w'),
 	    NOCOLOR('o');
 		
 	    private final char assignedLetter;
