@@ -19,6 +19,14 @@ public class TCPCommandSender implements CommandSender {
 		this.port = port;
 	}
 	
+	public String getIPAddress() {
+		return ipAddress;
+	}
+	
+	public int getPort() {
+		return port;
+	}
+	
 	@Override
 	public void sendCommand(String command) {
 		try {
@@ -72,49 +80,50 @@ public class TCPCommandSender implements CommandSender {
 
 	@Override
 	public void turnOnRed() {
-		String command = COMMAND_LED + SEPARATOR + Color.RED;
+		String command = COMMAND_LED + SEPARATOR + Color.RED.getCharacter();
+		System.out.println(command);
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnGreen() {
-		String command = COMMAND_LED + SEPARATOR + Color.GREEN;
+		String command = COMMAND_LED + SEPARATOR + Color.GREEN.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnBlue() {
-		String command = COMMAND_LED + SEPARATOR + Color.BLUE;
+		String command = COMMAND_LED + SEPARATOR + Color.BLUE.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnYellow() {
-		String command = COMMAND_LED + SEPARATOR + Color.YELLOW;
+		String command = COMMAND_LED + SEPARATOR + Color.YELLOW.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnMagenta() {
-		String command = COMMAND_LED + SEPARATOR + Color.MAGENTA;
+		String command = COMMAND_LED + SEPARATOR + Color.MAGENTA.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnCyan() {
-		String command = COMMAND_LED + SEPARATOR + Color.CYAN;
+		String command = COMMAND_LED + SEPARATOR + Color.CYAN.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOnWhite() {
-		String command = COMMAND_LED + SEPARATOR + Color.WHITE;
+		String command = COMMAND_LED + SEPARATOR + Color.WHITE.getCharacter();
 		sendCommand(command);
 	}
 
 	@Override
 	public void turnOffLEDs() {
-		String command = COMMAND_LED + SEPARATOR + Color.NOCOLOR;
+		String command = COMMAND_LED + SEPARATOR + Color.NOCOLOR.getCharacter();
 		sendCommand(command);
 	}
 
