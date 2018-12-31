@@ -22,7 +22,7 @@ public class UserBean implements Serializable {
 		return commandSender.getPort();
 	}
 
-	public void turnOnRed() { 
+	public void turnOnRed() {
 		commandSender.turnOnLed(CommandSender.Color.RED);
 	}
 

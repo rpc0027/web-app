@@ -13,26 +13,26 @@ import java.net.Socket;
 public class TCPCommandSender implements CommandSender {
 	private String ipAddress;
 	private int port;
-	
+
 	public TCPCommandSender(String ipAddress, int port) {
 		this.ipAddress = ipAddress;
 		this.port = port;
 	}
-	
+
 	public String getIPAddress() {
 		return ipAddress;
 	}
-	
+
 	public int getPort() {
 		return port;
 	}
-	
+
 	@Override
 	public void sendCommand(String command) {
 		try {
 			Socket socket =  new Socket(ipAddress, port);
 			PrintWriter printWriter = new PrintWriter(socket.getOutputStream(), true);
-			
+
 			// Send command over TCP.
 			printWriter.print(command);
 
@@ -68,6 +68,10 @@ public class TCPCommandSender implements CommandSender {
 
 		case CYAN:
 			turnOnCyan();
+			break;
+
+		case WHITE:
+			turnOnWhite();
 			break;
 
 		case NOCOLOR:
