@@ -23,14 +23,14 @@ public interface CommandSender {
 	    WHITE('w'),
 	    NOCOLOR('o');
 		
-	    private final char assignedLetter;
+	    private final char character;
 	    
 	    Color (char c) {
-	    	assignedLetter = c;
+	    	character = c;
 	    }
 	    
-	    public char getAssignedLetter() {
-	    	return assignedLetter;
+	    public char getCharacter() {
+	    	return character;
 	    }
 	}
 	
@@ -40,14 +40,14 @@ public interface CommandSender {
 	    YELLOW('y'),
 	    RED('r');
 		
-	    private final char assignedLetter;
+	    private final char character;
 	    
 	    PWMDevice (char c) {
-	    	assignedLetter = c;
+	    	character = c;
 	    }
 	    
-	    public char getAssignedLetter() {
-	    	return assignedLetter;
+	    public char getCharacter() {
+	    	return character;
 	    }
 	}
 	
