@@ -1,21 +1,137 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+ 
 <h:head>
-  <title>K64F Connect</title>
+    <title>K64F Connect</title>
+    <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
+
 <h:body>
-  <h:form>
-      IP Address: #{userBean.getIP()} Port: #{userBean.getPort()}
-    <p><h:commandButton value="RED" action="#{userBean.turnOnRed()}"/></p>
-    <p><h:commandButton value="GREEN" action="#{userBean.turnOnGreen()}"/></p>
-    <p><h:commandButton value="BLUE" action="#{userBean.turnOnBlue()}"/></p>
-    <p><h:commandButton value="YELLOW" action="#{userBean.turnOnYellow()}"/></p>
-    <p><h:commandButton value="MAGENTA" action="#{userBean.turnOnMagenta()}"/></p>
-    <p><h:commandButton value="CYAN" action="#{userBean.turnOnCyan()}"/></p>
-    <p><h:commandButton value="WHITE" action="#{userBean.turnOnWhite()}"/></p>
-    <p><h:commandButton value="OFF" action="#{userBean.turnOffLeds()}"/></p>
-  </h:form>
+	<header id="main-header">
+		<div class="container">
+		   <h1>K64F Connect</h1>
+		</div>
+	</header>
+	
+    <nav id="navbar">
+        <div class="container">
+            <ul>
+                <li><a href="#showcase">Home</a></li>
+                <li><a href="#conn">Connection</a></li>
+                <li><a href="#rgb">RGB LEDs</a></li>
+                <li><a href="#msg">Messages</a></li>
+                <li><a href="#pwm">PWMs</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="showcase">
+        <div class="containter">
+            <h1>Connect with your FRDM-K64F board.</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="conn">
+            <h1>Network settings of the board</h1>
+            <form class="conn-form" method="post"> 
+                <div class="form-group">
+                    <label>IPv4 address: </label>
+                    <input type="text" name="ipAddr" value="255.255.255.255"/>
+                </div>
+                <div class="form-group">
+                        <label>Port: </label>
+                        <input type="text" name="port" value="65535"/>
+                </div>
+                <input class="button" type="submit" value="Connect" name="conn"></input>
+            </form>
+        </section>
+
+        <aside id="sidebar">
+            <p>If the board has been able to negotiate an IP address,
+                it will be shown in its display.</p>
+        </aside>
+    </div>
+
+    <div class="container">
+        <section id="rgb">
+            <h1>Change the colors of the RGB leds</h1>
+            <h:form>
+                <div class="buttons">
+                    <h:commandButton value="" action="#{userBean.turnOnRed()}" styleClass="red"/>
+                    <h:commandButton value="" action="#{userBean.turnOnGreen()}" styleClass="green"/>
+                    <h:commandButton value="" action="#{userBean.turnOnBlue()}" styleClass="blue"/>
+                    <h:commandButton value="" action="#{userBean.turnOnYellow()}" styleClass="yellow"/>
+                    <h:commandButton value="" action="#{userBean.turnOnMagenta()}" styleClass="magenta"/>
+                    <h:commandButton value="" action="#{userBean.turnOnCyan()}" styleClass="cyan"/>
+                    <h:commandButton value="" action="#{userBean.turnOnWhite()}" styleClass="white"/>
+                    <h:commandButton value="" action="#{userBean.turnOffLeds()}" styleClass="black"/>
+                </div>
+            </h:form>
+        </section>
+
+        <aside id="sidebar">
+            <p>You can select any of the available colors, either one the basic
+                RGB colors or one of its mixes.
+                Also, you can turn everything off.</p>
+        </aside>
+    </div>
+
+    <div class="container">
+        <section id="msg">
+            <h1>Show messages in the attached LCD</h1>
+            <form class="conn-form" method="post"> 
+                    <div class="form-group">
+                        <label>Text for the first row: </label>
+                        <input type="text" name="row0" value="text for 1st row"/>
+                    </div>
+                    <input class="button" type="submit" value="Send" name="send0"></input>
+            </form>
+            <form class="conn-form" method="post"> 
+                    <div class="form-group">
+                        <label>Text for the second row: </label>
+                        <input type="text" name="row0" value="text for 2nd row"/>
+                    </div>
+                    <input class="button" type="submit" value="Send" name="send1"></input>
+            </form>
+        </section>
+
+        <aside id="sidebar">
+            <p>You can send a text message to each row of the display,
+                with a maximum of 16 characters.</p>
+        </aside>
+    </div>
+
+    <div class="container">
+        <section id="pwm">
+            <h1>Change the duty cycle of the PWMs</h1>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="sliderA" id="white"></input>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="sliderB" id="green"></input>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="sliderC" id="yellow"></input>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="0" max="100" value="50" class="sliderD" id="red"></input>
+            </div>
+        </section>
+
+        <aside id="sidebar">
+            <p>You can change the amount of time a PWM is active,
+                modifying the bright of the Basic I/O LEDs.</p>
+        </aside>
+    </div>
+
+    <footer id="main-footer">
+        <p>Copyright rpc0027 &copy; 2019 K64F Connect</p>
+    </footer>
 </h:body>
 </html>
