@@ -139,14 +139,14 @@ public class TCPCommandSender implements CommandSender {
 
 	@Override
 	public void sendMessageRow0(String message) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_MSG + SEPARATOR + "0" + SEPARATOR + message;
+		sendCommand(command);
 	}
 
 	@Override
 	public void sendMessageRow1(String message) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_MSG + SEPARATOR + "1" + SEPARATOR + message;
+		sendCommand(command);
 	}
 
 	@Override
