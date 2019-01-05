@@ -86,6 +86,14 @@ body{
     border: none;
 }
 
+.conn-form input[type="reset"]{
+    background-color: seagreen;
+    color: white;
+    padding: 10px 17px;
+    margin-top: 25px;
+    border: none;
+}
+
 #rgb{
     float: left;
     width: 70%;

@@ -39,17 +39,27 @@
     <div class="container">
         <section id="conn">
             <h1>Network settings of the board</h1>
-            <form class="conn-form" method="post"> 
+            <h:form class="conn-form"> 
                 <div class="form-group">
                     <label>IPv4 address: </label>
-                    <input type="text" name="ipAddr" value="255.255.255.255"/>
+                    <h:inputText id="ipAddress"
+                                title="IP address of the board"
+                                value="#{board.ipAddress}"
+                                required="true"
+                                requiredMessage="The IP is required to connect."
+                                maxlength="15"/>
                 </div>
                 <div class="form-group">
-                        <label>Port: </label>
-                        <input type="text" name="port" value="65535"/>
+                    <label>Port: </label>
+                    <h:inputText id="port"
+                                title="Port of the board"
+                                value="#{board.port}"
+                                required="true"
+                                requiredMessage="The port is required to connect."
+                                maxlength="5"/>
                 </div>
-                <input class="button" type="submit" value="Connect" name="conn"></input>
-            </form>
+                <h:commandButton type="submit" value="Connect" action="#{board.connect()}"/>
+            </h:form>
         </section>
 
         <aside id="sidebar">
@@ -63,14 +73,14 @@
             <h1>Change the colors of the RGB leds</h1>
             <h:form>
                 <div class="buttons">
-                    <h:commandButton value="" action="#{userBean.turnOnRed()}" styleClass="red"/>
-                    <h:commandButton value="" action="#{userBean.turnOnGreen()}" styleClass="green"/>
-                    <h:commandButton value="" action="#{userBean.turnOnBlue()}" styleClass="blue"/>
-                    <h:commandButton value="" action="#{userBean.turnOnYellow()}" styleClass="yellow"/>
-                    <h:commandButton value="" action="#{userBean.turnOnMagenta()}" styleClass="magenta"/>
-                    <h:commandButton value="" action="#{userBean.turnOnCyan()}" styleClass="cyan"/>
-                    <h:commandButton value="" action="#{userBean.turnOnWhite()}" styleClass="white"/>
-                    <h:commandButton value="" action="#{userBean.turnOffLeds()}" styleClass="black"/>
+                    <h:commandButton value="" action="#{board.turnOnRed()}" styleClass="red"/>
+                    <h:commandButton value="" action="#{board.turnOnGreen()}" styleClass="green"/>
+                    <h:commandButton value="" action="#{board.turnOnBlue()}" styleClass="blue"/>
+                    <h:commandButton value="" action="#{board.turnOnYellow()}" styleClass="yellow"/>
+                    <h:commandButton value="" action="#{board.turnOnMagenta()}" styleClass="magenta"/>
+                    <h:commandButton value="" action="#{board.turnOnCyan()}" styleClass="cyan"/>
+                    <h:commandButton value="" action="#{board.turnOnWhite()}" styleClass="white"/>
+                    <h:commandButton value="" action="#{board.turnOffLeds()}" styleClass="black"/>
                 </div>
             </h:form>
         </section>
@@ -85,20 +95,32 @@
     <div class="container">
         <section id="msg">
             <h1>Show messages in the attached LCD</h1>
-            <form class="conn-form" method="post"> 
+            <h:form class="conn-form" method="post"> 
                     <div class="form-group">
                         <label>Text for the first row: </label>
-                        <input type="text" name="row0" value="text for 1st row"/>
+                        <h:inputText id="row1"
+                        type="text"
+                        title="Text for the first row of the display"
+                        value="#{board.row1message}"
+                        required="true"
+                        requiredMessage="Tipe some message to send."
+                        maxlength="16"/>
                     </div>
-                    <input class="button" type="submit" value="Send" name="send0"></input>
-            </form>
-            <form class="conn-form" method="post"> 
-                    <div class="form-group">
-                        <label>Text for the second row: </label>
-                        <input type="text" name="row0" value="text for 2nd row"/>
-                    </div>
-                    <input class="button" type="submit" value="Send" name="send1"></input>
-            </form>
+                    <h:commandButton value="Send" action="#{board.sendMessageRow1()}" styleClass="button"/>
+            </h:form>
+            <h:form class="conn-form" method="post"> 
+                <div class="form-group">
+                    <label>Text for the second row: </label>
+                    <h:inputText id="row2"
+                    type="text"
+                    title="Text for the second row of the display"
+                    value="#{board.row2message}"
+                    required="true"
+                    requiredMessage="Tipe some message to send."
+                    maxlength="16"/>
+                </div>
+                <h:commandButton value="Send" action="#{board.sendMessageRow2()}" styleClass="button"/>
+            </h:form>
         </section>
 
         <aside id="sidebar">
@@ -122,6 +144,10 @@
             <div class="slidecontainer">
                 <input type="range" min="0" max="100" value="50" class="sliderD" id="red"></input>
             </div>
+
+            <h:form>
+                <barca:inputSlider id="sld1" value="#{demo.number}" min="0" max="100"></barca:inputSlider>
+            </h:form>
         </section>
 
         <aside id="sidebar">
