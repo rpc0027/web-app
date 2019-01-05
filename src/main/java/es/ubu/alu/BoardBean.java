@@ -18,54 +18,54 @@ public class BoardBean implements Serializable {
 	private String row1message = "text for the 1st row";
 	private String row2message = "text for the 2nd row";
 
-	TCPCommandSender commandSender;
+	CommandSender tcpCommandSender;
 
 	public BoardBean() {
-		commandSender = new TCPCommandSender(ipAddress, port);
+		tcpCommandSender = new TCPCommandSender(ipAddress, port);
 	}
 
 	public void connect() {
-		commandSender = new TCPCommandSender(ipAddress, port);
+		tcpCommandSender = new TCPCommandSender(ipAddress, port);
 	}
 
 	public void turnOnRed() {
-		commandSender.turnOnLed(CommandSender.Color.RED);
+		tcpCommandSender.turnOnLed(CommandSender.Color.RED);
 	}
 
 	public void turnOnGreen() { 
-		commandSender.turnOnLed(CommandSender.Color.GREEN);
+		tcpCommandSender.turnOnLed(CommandSender.Color.GREEN);
 	}
 
 	public void turnOnBlue() {
-		commandSender.turnOnLed(CommandSender.Color.BLUE);
+		tcpCommandSender.turnOnLed(CommandSender.Color.BLUE);
 	}
 
 	public void turnOnYellow() { 
-		commandSender.turnOnLed(CommandSender.Color.YELLOW);
+		tcpCommandSender.turnOnLed(CommandSender.Color.YELLOW);
 	}
 
 	public void turnOnMagenta() { 
-		commandSender.turnOnLed(CommandSender.Color.MAGENTA);
+		tcpCommandSender.turnOnLed(CommandSender.Color.MAGENTA);
 	}
 
 	public void turnOnCyan() { 
-		commandSender.turnOnLed(CommandSender.Color.CYAN);
+		tcpCommandSender.turnOnLed(CommandSender.Color.CYAN);
 	}
 
 	public void turnOnWhite() { 
-		commandSender.turnOnLed(CommandSender.Color.WHITE);
+		tcpCommandSender.turnOnLed(CommandSender.Color.WHITE);
 	}
 
 	public void turnOffLeds() { 
-		commandSender.turnOffLEDs();
+		tcpCommandSender.turnOffLEDs();
 	}
 
 	public void sendMessageRow1() {
-		commandSender.sendMessageRow0(row1message);
+		tcpCommandSender.sendMessageRow0(row1message);
 	}
 
 	public void sendMessageRow2() {
-		commandSender.sendMessageRow1(row2message);
+		tcpCommandSender.sendMessageRow1(row2message);
 	}
 
 	public String getIpAddress() {
