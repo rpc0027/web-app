@@ -157,25 +157,25 @@ public class TCPCommandSender implements CommandSender {
 
 	@Override
 	public void adjustWhite(byte percentage) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_PWM + SEPARATOR + "w" + SEPARATOR + percentage + "w";
+		sendCommand(command);
 	}
 
 	@Override
 	public void adjustGreen(byte percentage) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_PWM + SEPARATOR + "g" + SEPARATOR + percentage + "g";
+		sendCommand(command);
 	}
 
 	@Override
 	public void adjustYellow(byte percentage) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_PWM + SEPARATOR + "y" + SEPARATOR + percentage + "y";
+		sendCommand(command);
 	}
 
 	@Override
 	public void adjustRed(byte percentage) {
-		// TODO Auto-generated method stub
-
+		String command = COMMAND_PWM + SEPARATOR + "r" + SEPARATOR + percentage + "r";
+		sendCommand(command);
 	}
 }
