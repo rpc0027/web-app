@@ -1,30 +1,34 @@
-/**
- * 
- */
 package es.ubu.alu;
 
 import java.io.PrintWriter;
 import java.net.Socket;
 
 /**
- * @author rpc0027
- *
+ * Implements the functions for each operation available in the remote board.
+ * <p>
+ * The commands are sent inside packets through the network
+ * using Transmission Control Protocol (TCP).
+ * To achieve this, it is necessary to know the IP address and the port 
+ * of the board that will receive the package.
+ * 
+ * @author RPC
+ * @version 1.0
  */
 public class TCPCommandSender implements CommandSender {
+	/** IP address of the remote board. */
 	private String ipAddress;
+	/** TCP port of the remote board. */
 	private int port;
 
+	/**
+	 * Create a new TCPCommandSender with the data provided.
+	 * 
+	 * @param ipAddress the address of the remote board.
+	 * @param port      the opened TCP port of the remote board.
+	 */
 	public TCPCommandSender(String ipAddress, int port) {
 		this.ipAddress = ipAddress;
 		this.port = port;
-	}
-
-	public String getIPAddress() {
-		return ipAddress;
-	}
-
-	public int getPort() {
-		return port;
 	}
 
 	@Override
@@ -77,8 +81,6 @@ public class TCPCommandSender implements CommandSender {
 		case NOCOLOR:
 			turnOffLEDs();
 			break;
-
-		default:
 		}
 	}
 
@@ -133,8 +135,15 @@ public class TCPCommandSender implements CommandSender {
 
 	@Override
 	public void sendMessage(byte row, String message) {
-		// TODO Auto-generated method stub
+		switch(row) {
+		case 0:
+			sendMessageRow0(message);
+			break;
 
+		case 1:
+			sendMessageRow1(message);
+			break;
+		}
 	}
 
 	@Override
@@ -151,8 +160,20 @@ public class TCPCommandSender implements CommandSender {
 
 	@Override
 	public void adjustsPWM(PWMDevice pwmDevice, byte percentage) {
-		// TODO Auto-generated method stub
-
+		switch(pwmDevice) {
+		case WHITE:
+			adjustWhite(percentage);
+			break;
+		case GREEN:
+			adjustGreen(percentage);
+			break;
+		case YELLOW:
+			adjustYellow(percentage);
+			break;
+		case RED:
+			adjustRed(percentage);
+			break;
+		}
 	}
 
 	@Override
@@ -177,5 +198,23 @@ public class TCPCommandSender implements CommandSender {
 	public void adjustRed(byte percentage) {
 		String command = COMMAND_PWM + SEPARATOR + "r" + SEPARATOR + percentage + "r";
 		sendCommand(command);
+	}
+
+	/**
+	 * Return the address of the board to which commands are being sent.
+	 * 
+	 * @return the string with the IP address.
+	 */
+	public String getIPAddress() {
+		return ipAddress;
+	}
+
+	/**
+	 * Return the port of the board to which commands are being sent.
+	 * 
+	 * @return the integer with the port number.
+	 */
+	public int getPort() {
+		return port;
 	}
 }
