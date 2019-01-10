@@ -2,22 +2,22 @@ package es.ubu.alu;
 
 import java.io.Serializable;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 import es.ubu.alu.CommandSender.PWMDevice;
 
 /**
  * Bean used by the web interface to send commands to the board.
  * <p>
- * For the submission to be successful, it is necessary that
- * the TCP/IP data provided by the user is correct.
+ * For the submission to be successful, it is necessary that the TCP/IP data
+ * provided by the user is correct.
  * 
  * @author RPC
  * @version 1.0
  *
  */
-@ManagedBean(name = "board")
+@Named("bean")
 @SessionScoped
 public class BoardBean implements Serializable {
 	/** Randomly generated identifier. */
@@ -30,13 +30,13 @@ public class BoardBean implements Serializable {
 	private String row1message = "text for the 1st row";
 	/** Text to be sent to the second row of the display. */
 	private String row2message = "text for the 2nd row";
-	/** Value of the device A regulated by PWM.*/
+	/** Value of the device A regulated by PWM. */
 	private String pwmA = "0";
-	/** Value of the device B regulated by PWM.*/
+	/** Value of the device B regulated by PWM. */
 	private String pwmB = "0";
-	/** Value of the device C regulated by PWM.*/
+	/** Value of the device C regulated by PWM. */
 	private String pwmC = "0";
-	/** Value of the device D regulated by PWM.*/
+	/** Value of the device D regulated by PWM. */
 	private String pwmD = "0";
 	/** Handler of network communications. */
 	private CommandSender tcpCommandSender;
@@ -46,9 +46,8 @@ public class BoardBean implements Serializable {
 	}
 
 	/**
-	 * Create a commandSender with the data provided by the user
-	 * to establish a connection with the board
-	 * and transmit packets through the TCP/IP stack.
+	 * Create a commandSender with the data provided by the user to establish a
+	 * connection with the board and transmit packets through the TCP/IP stack.
 	 */
 	public void connect() {
 		tcpCommandSender = new TCPCommandSender(ipAddress, port);
@@ -64,7 +63,7 @@ public class BoardBean implements Serializable {
 	/**
 	 * Order to send the command that turns on the green color.
 	 */
-	public void turnOnGreen() { 
+	public void turnOnGreen() {
 		tcpCommandSender.turnOnLed(CommandSender.Color.GREEN);
 	}
 
@@ -78,35 +77,35 @@ public class BoardBean implements Serializable {
 	/**
 	 * Order to send the command that turns on the yellow color.
 	 */
-	public void turnOnYellow() { 
+	public void turnOnYellow() {
 		tcpCommandSender.turnOnLed(CommandSender.Color.YELLOW);
 	}
 
 	/**
 	 * Order to send the command that turns on the magenta color.
 	 */
-	public void turnOnMagenta() { 
+	public void turnOnMagenta() {
 		tcpCommandSender.turnOnLed(CommandSender.Color.MAGENTA);
 	}
 
 	/**
 	 * Order to send the command that turns on the cyan color.
 	 */
-	public void turnOnCyan() { 
+	public void turnOnCyan() {
 		tcpCommandSender.turnOnLed(CommandSender.Color.CYAN);
 	}
 
 	/**
 	 * Order to send the command that turns on the white color.
 	 */
-	public void turnOnWhite() { 
+	public void turnOnWhite() {
 		tcpCommandSender.turnOnLed(CommandSender.Color.WHITE);
 	}
 
 	/**
 	 * Order to send the command that turns off all colors.
 	 */
-	public void turnOffLeds() { 
+	public void turnOffLeds() {
 		tcpCommandSender.turnOffLEDs();
 	}
 
@@ -127,64 +126,60 @@ public class BoardBean implements Serializable {
 	/**
 	 * Order to send the command that adjusts the PWM value of white led.
 	 * <p>
-	 * The board uses the percentage in inverse manner, 
-	 * being 100% the lowest value and 0% the highest value. 
-	 * Therefore, it is necessary to invert the values entered by the user 
-	 * so that the board can interpret them correctly.
+	 * The board uses the percentage in inverse manner, being 100% the lowest value
+	 * and 0% the highest value. Therefore, it is necessary to invert the values
+	 * entered by the user so that the board can interpret them correctly.
 	 * 
 	 * @param string the percentage to adjust the duty cycle.
 	 */
 	public void onWhiteValueChange(String string) {
-		byte value = (byte) (100 - Integer.valueOf(string));		
+		byte value = (byte) (100 - Integer.valueOf(string));
 		tcpCommandSender.adjustsPWM(PWMDevice.WHITE, value);
 	}
 
 	/**
 	 * Order to send the command that adjusts the PWM value of green led.
 	 * <p>
-	 * The board uses the percentage in inverse manner, 
-	 * being 100% the lowest value and 0% the highest value. 
-	 * Therefore, it is necessary to invert the values entered by the user 
-	 * so that the board can interpret them correctly.
+	 * The board uses the percentage in inverse manner, being 100% the lowest value
+	 * and 0% the highest value. Therefore, it is necessary to invert the values
+	 * entered by the user so that the board can interpret them correctly.
 	 * 
 	 * @param string the percentage to adjust the duty cycle.
 	 */
 	public void onGreenValueChange(String string) {
-		byte value = (byte) (100 - Integer.valueOf(string));		
+		byte value = (byte) (100 - Integer.valueOf(string));
 		tcpCommandSender.adjustsPWM(PWMDevice.GREEN, value);
 	}
 
 	/**
 	 * Order to send the command that adjusts the PWM value of yellow led.
 	 * <p>
-	 * The board uses the percentage in inverse manner, 
-	 * being 100% the lowest value and 0% the highest value. 
-	 * Therefore, it is necessary to invert the values entered by the user 
-	 * so that the board can interpret them correctly.
+	 * The board uses the percentage in inverse manner, being 100% the lowest value
+	 * and 0% the highest value. Therefore, it is necessary to invert the values
+	 * entered by the user so that the board can interpret them correctly.
 	 * 
 	 * @param string the percentage to adjust the duty cycle.
 	 */
 	public void onYellowValueChange(String string) {
-		byte value = (byte) (100 - Integer.valueOf(string));		
+		byte value = (byte) (100 - Integer.valueOf(string));
 		tcpCommandSender.adjustsPWM(PWMDevice.YELLOW, value);
 	}
 
 	/**
 	 * Order to send the command that adjusts the PWM value of red led.
 	 * <p>
-	 * The board uses the percentage in inverse manner, 
-	 * being 100% the lowest value and 0% the highest value. 
-	 * Therefore, it is necessary to invert the values entered by the user 
-	 * so that the board can interpret them correctly.
+	 * The board uses the percentage in inverse manner, being 100% the lowest value
+	 * and 0% the highest value. Therefore, it is necessary to invert the values
+	 * entered by the user so that the board can interpret them correctly.
 	 * 
 	 * @param string the percentage to adjust the duty cycle.
 	 */
 	public void onRedValueChange(String string) {
-		byte value = (byte) (100 - Integer.valueOf(string));		
+		byte value = (byte) (100 - Integer.valueOf(string));
 		tcpCommandSender.adjustsPWM(PWMDevice.RED, value);
 	}
-	
-	/** 
+
+	/**
 	 * Get the {@link #ipAddress}.
 	 * 
 	 * @return the {@link #ipAddress}.
@@ -193,7 +188,7 @@ public class BoardBean implements Serializable {
 		return ipAddress;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #ipAddress}.
 	 * 
 	 * @param ipAddress the {@link #ipAddress}.
@@ -202,7 +197,7 @@ public class BoardBean implements Serializable {
 		this.ipAddress = ipAddress;
 	}
 
-	/** 
+	/**
 	 * Get the {@link #port}.
 	 * 
 	 * @return the {@link #port}.
@@ -211,7 +206,7 @@ public class BoardBean implements Serializable {
 		return port;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #port}.
 	 * 
 	 * @param port the {@link #port}.
@@ -219,8 +214,8 @@ public class BoardBean implements Serializable {
 	public void setPort(int port) {
 		this.port = port;
 	}
-	
-	/** 
+
+	/**
 	 * Get the {@link #row1message}.
 	 * 
 	 * @return the {@link #row1message}.
@@ -229,7 +224,7 @@ public class BoardBean implements Serializable {
 		return row1message;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #row1message}.
 	 * 
 	 * @param row1message the {@link #row1message}.
@@ -238,7 +233,7 @@ public class BoardBean implements Serializable {
 		this.row1message = row1message;
 	}
 
-	/** 
+	/**
 	 * Get the {@link #row2message}.
 	 * 
 	 * @return the {@link #row2message}.
@@ -247,7 +242,7 @@ public class BoardBean implements Serializable {
 		return row2message;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #row2message}.
 	 * 
 	 * @param row2message the {@link #row2message}.
@@ -256,7 +251,7 @@ public class BoardBean implements Serializable {
 		this.row2message = row2message;
 	}
 
-	/** 
+	/**
 	 * Get the {@link #pwmA}.
 	 * 
 	 * @return the {@link #pwmA}.
@@ -265,7 +260,7 @@ public class BoardBean implements Serializable {
 		return pwmA;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #pwmA}.
 	 * 
 	 * @param pwmA the {@link #pwmA}.
@@ -273,8 +268,8 @@ public class BoardBean implements Serializable {
 	public void setPwmA(String pwmA) {
 		this.pwmA = pwmA;
 	}
-	
-	/** 
+
+	/**
 	 * Get the {@link #pwmB}.
 	 * 
 	 * @return the {@link #pwmB}.
@@ -283,7 +278,7 @@ public class BoardBean implements Serializable {
 		return pwmB;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #pwmB}.
 	 * 
 	 * @param pwmB the {@link #pwmB}.
@@ -292,7 +287,7 @@ public class BoardBean implements Serializable {
 		this.pwmB = pwmB;
 	}
 
-	/** 
+	/**
 	 * Get the {@link #pwmC}.
 	 * 
 	 * @return the {@link #pwmC}.
@@ -301,7 +296,7 @@ public class BoardBean implements Serializable {
 		return pwmC;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #pwmC}.
 	 * 
 	 * @param pwmC the {@link #pwmC}.
@@ -310,8 +305,7 @@ public class BoardBean implements Serializable {
 		this.pwmC = pwmC;
 	}
 
-	
-	/** 
+	/**
 	 * Get the {@link #pwmD}.
 	 * 
 	 * @return the {@link #pwmD}.
@@ -320,7 +314,7 @@ public class BoardBean implements Serializable {
 		return pwmD;
 	}
 
-	/** 
+	/**
 	 * Set the {@link #pwmD}.
 	 * 
 	 * @param pwmD the {@link #pwmD}.
