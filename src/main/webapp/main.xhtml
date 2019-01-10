@@ -1,206 +1,196 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
- 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
 <h:head>
-    <title>K64F Connect</title>
-    <h:outputStylesheet library="css" name="style.css"/>
+	<title>K64F Connect</title>
+	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 
 <h:body>
 	<header id="main-header">
-		<div class="container">
-		   <h1>K64F Connect</h1>
-		</div>
+	<div class="container">
+		<h1>K64F Connect</h1>
+	</div>
 	</header>
-	
-    <nav id="navbar">
-        <div class="container">
-            <ul>
-                <li><a href="#showcase">Home</a></li>
-                <li><a href="#conn">Connection</a></li>
-                <li><a href="#rgb">RGB LEDs</a></li>
-                <li><a href="#msg">Messages</a></li>
-                <li><a href="#pwm">PWMs</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <section id="showcase">
-        <div class="containter">
-            <h1>Connect with your FRDM-K64F board.</h1>
-        </div>
-    </section>
+	<nav id="navbar">
+	<div class="container">
+		<ul>
+			<li><a href="#showcase">Home</a></li>
+			<li><a href="#conn">Connection</a></li>
+			<li><a href="#rgb">RGB LEDs</a></li>
+			<li><a href="#msg">Messages</a></li>
+			<li><a href="#pwm">PWMs</a></li>
+		</ul>
+	</div>
+	</nav>
 
-    <div class="container">
-        <section id="conn">
-            <h1>Network settings of the board</h1>
-            <h:form class="conn-form"> 
-                <div class="form-group">
-                    <label>IPv4 address: </label>
-                    <h:inputText id="ipAddress"
-                                title="IP address of the board"
-                                value="#{board.ipAddress}"
-                                required="true"
-                                requiredMessage="The IP is required to connect."
-                                maxlength="15"/>
-                </div>
-                <div class="form-group">
-                    <label>Port: </label>
-                    <h:inputText id="port"
-                                title="Port of the board"
-                                value="#{board.port}"
-                                required="true"
-                                requiredMessage="The port is required to connect."
-                                maxlength="5"/>
-                </div>
-                <h:commandButton type="submit" value="Connect" action="#{board.connect()}">
-                    <f:ajax execute="@form" render="@none" />
-                </h:commandButton>
-            </h:form>
-        </section>
+	<section id="showcase">
+	<div class="containter">
+		<h1>Connect with your FRDM-K64F board.</h1>
+	</div>
+	</section>
 
-        <aside id="sidebar">
-            <p>If the board has been able to negotiate an IP address,
-                it will be shown in its display.</p>
-        </aside>
-    </div>
+	<div class="container">
+		<section id="conn">
+		<h1>Network settings of the board</h1>
+		<h:form class="conn-form">
+			<div class="form-group">
+				<label>IPv4 address: </label>
+				<h:inputText id="ipAddress" title="IP address of the board"
+					value="#{board.ipAddress}" required="true"
+					requiredMessage="The IP is required to connect." maxlength="15" />
+			</div>
+			<div class="form-group">
+				<label>Port: </label>
+				<h:inputText id="port" title="Port of the board"
+					value="#{board.port}" required="true"
+					requiredMessage="The port is required to connect." maxlength="5" />
+			</div>
+			<h:commandButton type="submit" value="Connect"
+				action="#{board.connect()}">
+				<f:ajax execute="@form" render="@none" />
+			</h:commandButton>
+		</h:form> </section>
 
-    <div class="container">
-        <section id="rgb">
-            <h1>Change the colors of the RGB leds</h1>
-            <h:form>
-                <div class="buttons">
-                    <h:commandButton value="" action="#{board.turnOnRed()}" styleClass="red">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnGreen()}" styleClass="green">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnBlue()}" styleClass="blue">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnYellow()}" styleClass="yellow">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnMagenta()}" styleClass="magenta">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnCyan()}" styleClass="cyan">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOnWhite()}" styleClass="white">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                    <h:commandButton value="" action="#{board.turnOffLeds()}" styleClass="black">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-                </div>
-            </h:form>
-        </section>
+		<aside id="sidebar">
+		<p>If the board has been able to negotiate an IP address, it will
+			be shown in its display.</p>
+		</aside>
+	</div>
 
-        <aside id="sidebar">
-            <p>You can select any of the available colors, either one the basic
-                RGB colors or one of its mixes.
-                Also, you can turn everything off.</p>
-        </aside>
-    </div>
+	<div class="container">
+		<section id="rgb">
+		<h1>Change the colors of the RGB leds</h1>
+		<h:form>
+			<div class="buttons">
+				<h:commandButton value="" action="#{board.turnOnRed()}"
+					styleClass="red">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnGreen()}"
+					styleClass="green">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnBlue()}"
+					styleClass="blue">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnYellow()}"
+					styleClass="yellow">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnMagenta()}"
+					styleClass="magenta">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnCyan()}"
+					styleClass="cyan">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOnWhite()}"
+					styleClass="white">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+				<h:commandButton value="" action="#{board.turnOffLeds()}"
+					styleClass="black">
+					<f:ajax execute="@form" render="@none" />
+				</h:commandButton>
+			</div>
+		</h:form> </section>
 
-    <div class="container">
-        <section id="msg">
-            <h1>Show messages in the attached LCD</h1>
-            <h:form class="conn-form" method="post"> 
-                    <div class="form-group">
-                        <label>Text for the first row: </label>
-                        <h:inputText id="row1"
-                        type="text"
-                        title="Text for the first row of the display"
-                        value="#{board.row1message}"
-                        required="true"
-                        requiredMessage="Tipe some message to send."
-                        maxlength="16"/>
-                    </div>
-                    <h:commandButton value="Send" action="#{board.sendMessageRow1()}" styleClass="button">
-                        <f:ajax execute="@form" render="@none" />
-                    </h:commandButton>
-            </h:form>
-            <h:form class="conn-form" method="post"> 
-                <div class="form-group">
-                    <label>Text for the second row: </label>
-                    <h:inputText id="row2"
-                    type="text"
-                    title="Text for the second row of the display"
-                    value="#{board.row2message}"
-                    required="true"
-                    requiredMessage="Tipe some message to send."
-                    maxlength="16"/>
-                </div>
-                <h:commandButton value="Send" action="#{board.sendMessageRow2()}" styleClass="button">
-                    <f:ajax execute="@form" render="@none" />
-                </h:commandButton>
-            </h:form>
-        </section>
+		<aside id="sidebar">
+		<p>You can select any of the available colors, either one the
+			basic RGB colors or one of its mixes. Also, you can turn everything
+			off.</p>
+		</aside>
+	</div>
 
-        <aside id="sidebar">
-            <p>You can send a text message to each row of the display,
-                with a maximum of 16 characters.</p>
-        </aside>
-    </div>
+	<div class="container">
+		<section id="msg">
+		<h1>Show messages in the attached LCD</h1>
+		<h:form class="conn-form" method="post">
+			<div class="form-group">
+				<label>Text for the first row: </label>
+				<h:inputText id="row1" type="text"
+					title="Text for the first row of the display"
+					value="#{board.row1message}" required="true"
+					requiredMessage="Tipe some message to send." maxlength="16" />
+			</div>
+			<h:commandButton value="Send" action="#{board.sendMessageRow1()}"
+				styleClass="button">
+				<f:ajax execute="@form" render="@none" />
+			</h:commandButton>
+		</h:form> <h:form class="conn-form" method="post">
+			<div class="form-group">
+				<label>Text for the second row: </label>
+				<h:inputText id="row2" type="text"
+					title="Text for the second row of the display"
+					value="#{board.row2message}" required="true"
+					requiredMessage="Tipe some message to send." maxlength="16" />
+			</div>
+			<h:commandButton value="Send" action="#{board.sendMessageRow2()}"
+				styleClass="button">
+				<f:ajax execute="@form" render="@none" />
+			</h:commandButton>
+		</h:form> </section>
 
-    <div class="container">
-        <section id="pwm">
-            <h1>Change the duty cycle of the PWMs</h1>            
-            <div class="slidercontainer">
-                <h:form>
-                    <input type="range" id="white" jsf:binding="#{inputA}"
-                    onchange="submit()" 
-                    jsf:valueChangeListener="#{board.onWhiteValueChange(inputA.value)}"
-                    min="0" max="100" value="#{board.pwmA}" class="sliderA">
-                    </input>
-                </h:form>
-            </div>
-            <div class="slidercontainer">
-                <h:form>
-                    <input type="range" id="green" jsf:binding="#{inputB}"
-                    onchange="submit()" 
-                    jsf:valueChangeListener="#{board.onGreenValueChange(inputB.value)}"
-                    min="0" max="100" value="#{board.pwmB}" class="sliderB">
-                    </input>
-                </h:form>
-            </div>
-            <div class="slidercontainer">
-                <h:form>
-                    <input type="range" id="yellow" jsf:binding="#{inputC}"
-                    onchange="submit()" 
-                    jsf:valueChangeListener="#{board.onYellowValueChange(inputC.value)}"
-                    min="0" max="100" value="#{board.pwmC}" class="sliderC">
-                    </input>
-                </h:form>
-            </div>
-            <div class="slidercontainer">
-                <h:form>
-                    <input type="range" id="red" jsf:binding="#{inputD}"
-                    onchange="submit()" 
-                    jsf:valueChangeListener="#{board.onRedValueChange(inputD.value)}"
-                    min="0" max="100" value="#{board.pwmD}" class="sliderD">
-                    </input>
-                </h:form>
-            </div>
-        </section>
+		<aside id="sidebar">
+		<p>You can send a text message to each row of the display, with a
+			maximum of 16 characters.</p>
+		</aside>
+	</div>
 
-        <aside id="sidebar">
-            <p>You can change the amount of time a PWM is active,
-                modifying the bright of the Basic I/O LEDs.</p>
-        </aside>
-    </div>
+	<div class="container">
+		<section id="pwm">
+		<h1>Change the duty cycle of the PWMs</h1>
+		<div class="slidercontainer">
+			<h:form>
+				<input type="range" id="white" jsf:binding="#{inputA}"
+					onchange="submit()"
+					jsf:valueChangeListener="#{board.onWhiteValueChange(inputA.value)}"
+					min="0" max="100" value="#{board.pwmA}" class="sliderA"> </input>
+			</h:form>
+		</div>
+		<div class="slidercontainer">
+			<h:form>
+				<input type="range" id="green" jsf:binding="#{inputB}"
+					onchange="submit()"
+					jsf:valueChangeListener="#{board.onGreenValueChange(inputB.value)}"
+					min="0" max="100" value="#{board.pwmB}" class="sliderB"> </input>
+			</h:form>
+		</div>
+		<div class="slidercontainer">
+			<h:form>
+				<input type="range" id="yellow" jsf:binding="#{inputC}"
+					onchange="submit()"
+					jsf:valueChangeListener="#{board.onYellowValueChange(inputC.value)}"
+					min="0" max="100" value="#{board.pwmC}" class="sliderC"> </input>
+			</h:form>
+		</div>
+		<div class="slidercontainer">
+			<h:form>
+				<input type="range" id="red" jsf:binding="#{inputD}"
+					onchange="submit()"
+					jsf:valueChangeListener="#{board.onRedValueChange(inputD.value)}"
+					min="0" max="100" value="#{board.pwmD}" class="sliderD"> </input>
+			</h:form>
+		</div>
+		</section>
 
-    <footer id="main-footer">
-        <p>Copyright rpc0027 &copy; 2019 K64F Connect</p>
-    </footer>
+		<aside id="sidebar">
+		<p>You can change the amount of time a PWM is active, modifying
+			the bright of the Basic I/O LEDs.</p>
+		</aside>
+	</div>
+
+	<footer id="main-footer">
+	<p>Copyright rpc0027 &copy; 2019 K64F Connect</p>
+	</footer>
 </h:body>
 </html>
