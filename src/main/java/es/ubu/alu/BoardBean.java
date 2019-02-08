@@ -2,8 +2,8 @@ package es.ubu.alu;
 
 import java.io.Serializable;
 
-import javax.enterprise.context.SessionScoped;
-import javax.inject.Named;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import es.ubu.alu.CommandSender.PWMDevice;
 
@@ -17,7 +17,7 @@ import es.ubu.alu.CommandSender.PWMDevice;
  * @version 1.0
  *
  */
-@Named("bean")
+@ManagedBean(name = "board")
 @SessionScoped
 public class BoardBean implements Serializable {
 	/** Randomly generated identifier. */
