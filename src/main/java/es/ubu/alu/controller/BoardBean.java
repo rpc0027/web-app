@@ -56,7 +56,7 @@ public class BoardBean implements Serializable {
 	/** Value of the device D regulated by PWM. */
 	private String pwmD = "0";
 	/** Handler of network communications. */
-	private Sender commandSender;
+	private Sender sender;
 
 	/** Default constructor. */
 	public BoardBean() {
@@ -67,15 +67,15 @@ public class BoardBean implements Serializable {
 	 * connection with the board and transmit packets through the TCP/IP stack.
 	 */
 	public void connect() {
-		commandSender = new TCPSenderBean(ipAddress, port);
+		sender = new TCPSenderBean(ipAddress, port);
 	}
 
 	/**
 	 * Order to send the command that turns on the red color.
 	 */
 	public void turnOnRed() {
-		if (commandSender != null) {
-			commandSender.turnOnRed();
+		if (sender != null) {
+			sender.turnOnRed();
 		}
 	}
 
@@ -83,8 +83,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the green color.
 	 */
 	public void turnOnGreen() {
-		if (commandSender != null) {
-			commandSender.turnOnGreen();
+		if (sender != null) {
+			sender.turnOnGreen();
 		}
 	}
 
@@ -92,8 +92,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the blue color.
 	 */
 	public void turnOnBlue() {
-		if (commandSender != null) {
-			commandSender.turnOnBlue();
+		if (sender != null) {
+			sender.turnOnBlue();
 		}
 	}
 
@@ -101,8 +101,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the yellow color.
 	 */
 	public void turnOnYellow() {
-		if (commandSender != null) {
-			commandSender.turnOnYellow();
+		if (sender != null) {
+			sender.turnOnYellow();
 		}
 	}
 
@@ -110,8 +110,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the magenta color.
 	 */
 	public void turnOnMagenta() {
-		if (commandSender != null) {
-			commandSender.turnOnMagenta();
+		if (sender != null) {
+			sender.turnOnMagenta();
 		}
 	}
 
@@ -119,8 +119,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the cyan color.
 	 */
 	public void turnOnCyan() {
-		if (commandSender != null) {
-			commandSender.turnOnCyan();
+		if (sender != null) {
+			sender.turnOnCyan();
 		}
 	}
 
@@ -128,8 +128,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns on the white color.
 	 */
 	public void turnOnWhite() {
-		if (commandSender != null) {
-			commandSender.turnOnWhite();
+		if (sender != null) {
+			sender.turnOnWhite();
 		}
 	}
 
@@ -137,8 +137,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that turns off all colors.
 	 */
 	public void turnOffLeds() {
-		if (commandSender != null) {
-			commandSender.turnOffLEDs();
+		if (sender != null) {
+			sender.turnOffLEDs();
 		}
 	}
 
@@ -146,8 +146,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that shows a message on 1st row.
 	 */
 	public void sendMessageRow1() {
-		if (commandSender != null) {
-			commandSender.sendMessageRow1(row1message);
+		if (sender != null) {
+			sender.sendMessageRow1(row1message);
 		}
 	}
 
@@ -155,8 +155,8 @@ public class BoardBean implements Serializable {
 	 * Order to send the command that shows a message on 2nd row.
 	 */
 	public void sendMessageRow2() {
-		if (commandSender != null) {
-			commandSender.sendMessageRow2(row2message);
+		if (sender != null) {
+			sender.sendMessageRow2(row2message);
 		}
 	}
 
@@ -171,8 +171,8 @@ public class BoardBean implements Serializable {
 	 */
 	public void onWhiteValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		if (commandSender != null) {
-			commandSender.adjustWhite(value);
+		if (sender != null) {
+			sender.adjustWhite(value);
 		}
 	}
 
@@ -187,8 +187,8 @@ public class BoardBean implements Serializable {
 	 */
 	public void onGreenValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		if (commandSender != null) {
-			commandSender.adjustGreen(value);
+		if (sender != null) {
+			sender.adjustGreen(value);
 		}
 	}
 
@@ -203,8 +203,8 @@ public class BoardBean implements Serializable {
 	 */
 	public void onYellowValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		if (commandSender != null) {
-			commandSender.adjustYellow(value);
+		if (sender != null) {
+			sender.adjustYellow(value);
 		}
 	}
 
@@ -219,8 +219,8 @@ public class BoardBean implements Serializable {
 	 */
 	public void onRedValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		if (commandSender != null) {
-			commandSender.adjustRed(value);
+		if (sender != null) {
+			sender.adjustRed(value);
 		}
 	}
 
