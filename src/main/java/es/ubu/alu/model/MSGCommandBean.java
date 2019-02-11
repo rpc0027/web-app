@@ -22,14 +22,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 /**
- * Bean used by the web interface to send commands to the board.
- * <p>
- * For the submission to be successful, it is necessary that the TCP/IP data
- * provided by the user is correct.
+ * Bean used to model MSG commands.
  * 
  * @author RPC
  * @version 1.0
- *
  */
 @ManagedBean(name = "msgCommandBean")
 @SessionScoped
