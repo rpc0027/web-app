@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package es.ubu.alu;
+package es.ubu.alu.controller;
 
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import es.ubu.alu.CommandSender.PWMDevice;
+import es.ubu.alu.controller.network.Sender;
+import es.ubu.alu.controller.network.TCPSenderBean;
 
 /**
  * Bean used by the web interface to send commands to the board.
@@ -55,7 +56,7 @@ public class BoardBean implements Serializable {
 	/** Value of the device D regulated by PWM. */
 	private String pwmD = "0";
 	/** Handler of network communications. */
-	private CommandSender tcpCommandSender;
+	private Sender commandSender;
 
 	/** Default constructor. */
 	public BoardBean() {
@@ -66,77 +67,97 @@ public class BoardBean implements Serializable {
 	 * connection with the board and transmit packets through the TCP/IP stack.
 	 */
 	public void connect() {
-		tcpCommandSender = new TCPCommandSender(ipAddress, port);
+		commandSender = new TCPSenderBean(ipAddress, port);
 	}
 
 	/**
 	 * Order to send the command that turns on the red color.
 	 */
 	public void turnOnRed() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.RED);
+		if (commandSender != null) {
+			commandSender.turnOnRed();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the green color.
 	 */
 	public void turnOnGreen() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.GREEN);
+		if (commandSender != null) {
+			commandSender.turnOnGreen();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the blue color.
 	 */
 	public void turnOnBlue() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.BLUE);
+		if (commandSender != null) {
+			commandSender.turnOnBlue();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the yellow color.
 	 */
 	public void turnOnYellow() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.YELLOW);
+		if (commandSender != null) {
+			commandSender.turnOnYellow();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the magenta color.
 	 */
 	public void turnOnMagenta() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.MAGENTA);
+		if (commandSender != null) {
+			commandSender.turnOnMagenta();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the cyan color.
 	 */
 	public void turnOnCyan() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.CYAN);
+		if (commandSender != null) {
+			commandSender.turnOnCyan();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns on the white color.
 	 */
 	public void turnOnWhite() {
-		tcpCommandSender.turnOnLed(CommandSender.Color.WHITE);
+		if (commandSender != null) {
+			commandSender.turnOnWhite();
+		}
 	}
 
 	/**
 	 * Order to send the command that turns off all colors.
 	 */
 	public void turnOffLeds() {
-		tcpCommandSender.turnOffLEDs();
+		if (commandSender != null) {
+			commandSender.turnOffLEDs();
+		}
 	}
 
 	/**
 	 * Order to send the command that shows a message on 1st row.
 	 */
 	public void sendMessageRow1() {
-		tcpCommandSender.sendMessage((byte) 0, row1message);
+		if (commandSender != null) {
+			commandSender.sendMessageRow1(row1message);
+		}
 	}
 
 	/**
 	 * Order to send the command that shows a message on 2nd row.
 	 */
 	public void sendMessageRow2() {
-		tcpCommandSender.sendMessage((byte) 1, row2message);
+		if (commandSender != null) {
+			commandSender.sendMessageRow2(row2message);
+		}
 	}
 
 	/**
@@ -150,7 +171,9 @@ public class BoardBean implements Serializable {
 	 */
 	public void onWhiteValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		tcpCommandSender.adjustsPWM(PWMDevice.WHITE, value);
+		if (commandSender != null) {
+			commandSender.adjustWhite(value);
+		}
 	}
 
 	/**
@@ -164,7 +187,9 @@ public class BoardBean implements Serializable {
 	 */
 	public void onGreenValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		tcpCommandSender.adjustsPWM(PWMDevice.GREEN, value);
+		if (commandSender != null) {
+			commandSender.adjustGreen(value);
+		}
 	}
 
 	/**
@@ -178,7 +203,9 @@ public class BoardBean implements Serializable {
 	 */
 	public void onYellowValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		tcpCommandSender.adjustsPWM(PWMDevice.YELLOW, value);
+		if (commandSender != null) {
+			commandSender.adjustYellow(value);
+		}
 	}
 
 	/**
@@ -192,7 +219,9 @@ public class BoardBean implements Serializable {
 	 */
 	public void onRedValueChange(String string) {
 		byte value = (byte) (100 - Integer.valueOf(string));
-		tcpCommandSender.adjustsPWM(PWMDevice.RED, value);
+		if (commandSender != null) {
+			commandSender.adjustRed(value);
+		}
 	}
 
 	/**
